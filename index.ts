@@ -61,9 +61,4 @@ class ListaDeProductos extends ListaDeCosas {
 
 export { ListaDeProductos, Product };
 
-function main() {
-  const list = new ListaDeProductos("Test");
-  console.log(list.getProduct(3));
-}
 
-main()
