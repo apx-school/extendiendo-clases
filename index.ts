@@ -1,6 +1,5 @@
-import * as fs from "fs";
-import * as remove from "lodash/remove";
-import * as orderBy from "lodash/orderBy";
+import * as fs from "fs"
+import * as _ from "lodash"
 
 class ListaDeCosas {
   name: string;
@@ -29,23 +28,35 @@ class Product {
 }
 
 class ListaDeProductos extends ListaDeCosas {
-  constructor(name:string){
+  constructor(name) {
     super(name)
-   
+    let propString = fs.readFileSync(__dirname + "/products.json")
+      .toString();
+    let propFinal = JSON.parse(propString);
+    propFinal.map(p => this.addProduct(p));
   }
-  addProduct(product:Product){
-    this.add(product)
+
+  addProduct(prod: Product) {
+    this.add(prod);
   }
-  getProduct(id:number): Product {
-    const cosas = this.getCosas();
-    return cosas.find((cosa) => cosa.id == id);
+
+  getProduct(id: number) {
+    return this.cosas.find(p => p["id"] == id);
   }
+
   removeProduct(id: number) {
-    remove(this.cosas, (c) => c.id == id);
+    return _.remove(this.cosas, (p => p["id"] == id));
   }
-  getSortedByPrice(order: "asc" | "desc") {
-    return orderBy(this.cosas,["price"], [order]);
+
+  getSortedByPrice(by:"asc" | "desc"){
+    if(by == "asc"){
+     return this.cosas.sort((a,b) => a.price - b.price)
+    }
+    if(by == "desc"){
+     return this.cosas.sort((a,b) => b.price - a.price)
+    }
   }
+
 }
 
 export { ListaDeProductos, Product };
