@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as pull from "lodash/pull";
 import * as reverse from "lodash/reverse";
+import * as orderBy from "lodash/orderBy";
 
 class ListaDeCosas {
   name: string;
@@ -58,22 +59,8 @@ class ListaDeProductos extends ListaDeCosas {
   }
 
   getSortedByPrice(order: "asc" | "desc") {
-    //ordenando el array
-    const listaOrdenada: Product[] = this.cosas.sort(function (a, b) {
-      if (a.price < b.price) {
-        return -1;
-      }
-      if (a.price > b.price) {
-        return 1;
-      }
-    });
-    //devolviéndolo ordenado
-    if (order == "asc") {
-      return listaOrdenada;
-    } else if (order == "desc") {
-      const listaInvertida: Product[] = reverse(listaOrdenada);
-      return listaInvertida;
-    }
+    const listaOrdenada = orderBy(this.cosas, ["price"], [order]);
+    return listaOrdenada;
   }
 }
 
