@@ -1,4 +1,6 @@
 import * as fs from "fs";
+import * as remove from "lodash/remove";
+import * as orderBy from "lodash/orderBy";
 
 class ListaDeCosas {
   name: string;
@@ -29,28 +31,31 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name: string) {
     super(name);
-    const contenidoArchivo = fs
-      .readFileSync(__dirname + "/products.json")
-      .toString();
-    const productosDelArchivo = JSON.parse(contenidoArchivo);
+
+    const contenidoArchivo = fs.readFileSync(__dirname + "/products.json");
+    const a = contenidoArchivo.toString();
+    const productosDelArchivo = JSON.parse(a);
+
+    productosDelArchivo.forEach((p) => {
+      this.addProduct(p);
+    });
   }
 
   addProduct(product: Product) {
     this.add(product);
   }
-  getProduct(id: number) {
-    const res = this.cosas.find((p) => {
-      return p.id == id;
+  getProduct(id: number): Product {
+    const cosas = this.getCosas();
+    return cosas.find((c) => {
+      c.id == id;
     });
-    return res;
   }
   removeProduct(id: number) {
-    const productoAEliminar = this.cosas.find((p) => {
-      return p.id == id;
-    });
-    this.cosas; // aca elimininamos el producto del la lista
+    remove(this.cosas, (n) => n.id == id);
   }
-  getSortedByPrice() {}
+  getSortedByPrice(order: "asc" | "desc") {
+    return orderBy(this.cosas, ["price"], [order]);
+  }
 }
 
 export { ListaDeProductos, Product };
