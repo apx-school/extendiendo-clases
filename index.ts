@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import * as remove from "lodash/remove";
+import * as pull from "lodash/pull";
 import * as reverse from "lodash/reverse";
 
 class ListaDeCosas {
@@ -31,7 +31,9 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name: string) {
     super(name);
-    const archivoBruto = fs.readFileSync("./products.json");
+    const archivoBruto = fs
+      .readFileSync(__dirname + "/products.json")
+      .toString();
     const cosas: Product[] = JSON.parse(archivoBruto);
     cosas.forEach((i) => this.addProduct(i));
   }
@@ -49,14 +51,13 @@ class ListaDeProductos extends ListaDeCosas {
   }
 
   removeProduct(id: number): Product {
-    const productoRemovido: Product = remove(this.cosas, [
-      (i: Product) => i.id == id,
-    ]);
+    const item = this.getProduct(id);
+    const productoRemovido: Product = pull(this.cosas, item);
     console.log("Elementos eliminados:");
     return productoRemovido;
   }
 
-  getSortedByPrice(order: string) {
+  getSortedByPrice(order: "asc" | "desc") {
     //ordenando el array
     const listaOrdenada: Product[] = this.cosas.sort(function (a, b) {
       if (a.price < b.price) {
@@ -67,9 +68,9 @@ class ListaDeProductos extends ListaDeCosas {
       }
     });
     //devolviéndolo ordenado
-    if ((order = "asc")) {
+    if (order == "asc") {
       return listaOrdenada;
-    } else if ((order = "desc")) {
+    } else if (order == "desc") {
       const listaInvertida: Product[] = reverse(listaOrdenada);
       return listaInvertida;
     }
