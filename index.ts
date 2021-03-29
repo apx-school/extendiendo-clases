@@ -21,7 +21,7 @@ class Product {
   name: string;
   price: number;
   id: number;
-  constructor(id: number, name: string, price: number) {
+  constructor(name: string, price: number, id: number) {
     this.name = name;
     this.price = price;
     this.id = id;
@@ -32,9 +32,10 @@ class ListaDeProductos extends ListaDeCosas {
   constructor(name: string) {
     super(name);
 
-    const contenidoArchivo = fs.readFileSync(__dirname + "/products.json");
-    const a = contenidoArchivo.toString();
-    const productosDelArchivo = JSON.parse(a);
+    const contenidoArchivo = fs
+      .readFileSync(__dirname + "/products.json")
+      .toString();
+    const productosDelArchivo = JSON.parse(contenidoArchivo);
 
     productosDelArchivo.forEach((p) => {
       this.addProduct(p);
