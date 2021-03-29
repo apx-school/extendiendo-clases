@@ -1,3 +1,7 @@
+import * as fs from "fs";
+import * as remove from "lodash/remove";
+import * as reverse from "lodash/reverse";
+
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
@@ -24,6 +28,52 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  constructor(name: string) {
+    super(name);
+    const archivoBruto = fs.readFileSync("./products.json");
+    const cosas: Product[] = JSON.parse(archivoBruto);
+    cosas.forEach((i) => this.addProduct(i));
+  }
+
+  addProduct(item: Product) {
+    const existe: boolean = this.cosas.includes(item.id);
+    if (existe == false) {
+      this.add(item);
+    } else console.log("El producto ya se encuentra en la lista.");
+  }
+
+  getProduct(id: number): Product {
+    const itemEncontrado: Product = this.cosas.find((i) => i.id == id);
+    return itemEncontrado;
+  }
+
+  removeProduct(id: number): Product {
+    const productoRemovido: Product = remove(this.cosas, [
+      (i: Product) => i.id == id,
+    ]);
+    console.log("Elementos eliminados:");
+    return productoRemovido;
+  }
+
+  getSortedByPrice(order: string) {
+    //ordenando el array
+    const listaOrdenada: Product[] = this.cosas.sort(function (a, b) {
+      if (a.price < b.price) {
+        return -1;
+      }
+      if (a.price > b.price) {
+        return 1;
+      }
+    });
+    //devolviéndolo ordenado
+    if ((order = "asc")) {
+      return listaOrdenada;
+    } else if ((order = "desc")) {
+      const listaInvertida: Product[] = reverse(listaOrdenada);
+      return listaInvertida;
+    }
+  }
+}
 
 export { ListaDeProductos, Product };
