@@ -10,7 +10,7 @@ class ListaDeCosas {
     this.name = name;
   }
   add(nuevaCosa) {
-    this.cosas.concat(nuevaCosa);
+    this.cosas.push(nuevaCosa);
   }
   getCosas() {
     return this.cosas;
@@ -29,6 +29,9 @@ class Product {
 }
 
 class ListaDeProductos extends ListaDeCosas {
+  addProduct(product: Product) {
+    this.add(product);
+  }
   constructor(name: string) {
     super(name);
 
@@ -42,13 +45,10 @@ class ListaDeProductos extends ListaDeCosas {
     });
   }
 
-  addProduct(product: Product) {
-    this.add(product);
-  }
-  getProduct(id: number): Product {
+  getProduct(id: number) {
     const cosas = this.getCosas();
     return cosas.find((c) => {
-      c.id == id;
+      return c.id == id;
     });
   }
   removeProduct(id: number) {
