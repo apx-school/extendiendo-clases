@@ -1,3 +1,7 @@
+import * as productosJson from "./products.json";
+import * as remove from "lodash/remove"
+import * as orderBy from "lodash/orderBy"
+
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
@@ -24,6 +28,29 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  addProduct(producto: Product){if(this.cosas.includes(producto)){
+  }else{return this.add(producto)}
+}
+constructor(name: string){
+  super(name)
+  productosJson.forEach((p)=>{
+    this.addProduct(p);
+  })
+}
+
+getProduct(id:number): Product{ 
+return this.getCosas().find((p)=> p.id == id)} 
+
+removeProduct(id:number):Product {
+  return remove(this.cosas, (p)=> p.id == id)
+}
+
+getSortedByPrice(order: "asc" | "desc"){
+return orderBy(this.cosas, ["price"], [order])
+}
+}
+
+
 
 export { ListaDeProductos, Product };
