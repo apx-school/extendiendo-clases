@@ -49,7 +49,7 @@ class ListaDeProductos extends ListaDeCosas {
     remove(this.cosas, (e) => e.id == id);
   }
   getSortedByPrice(order: "asc" | "desc") {
-    // hardcode | harcodeo significa escribir un valor que deveria ser una variable escrito a mano 
+    // hardcode | harcodeo significa escribir un valor que debería ser una variable escrita a mano
     return orderBy(this.cosas, ["price"], [order]);
   }
 }
