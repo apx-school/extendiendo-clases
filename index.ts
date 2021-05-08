@@ -36,7 +36,7 @@ class ListaDeProductos extends ListaDeCosas {
   name: string;
   constructor(name:string )  {
     super(name);
-    const datos = JSON.parse(fs.readFileSync("./products.json", 'utf8'));
+    const datos = JSON.parse(fs.readFileSync(__dirname+"./products.json", 'utf8'));
     datos.forEach(element => {
       this.addProduct(element);
     });
