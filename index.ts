@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as _ from "lodash";
+import * as orderBy from "lodash/orderBy";
 
 class ListaDeCosas {
   name: string;
@@ -49,13 +50,7 @@ class ListaDeProductos extends ListaDeCosas {
     return _.remove(this.cosas, (c) => c.id == id);
   }
   getSortedByPrice(order: "asc" | "desc") {
-    if (order == "asc") {
-      return _.sortBy(this.cosas, ["price"]);
-    }
-    if (order == "desc") {
-      return _.reverse(_.sortBy(this.cosas, ["price"]));
-    }
-    return this.cosas;
+    return orderBy(this.cosas, ["price"], [order]);
   }
 }
 export { ListaDeProductos, Product };
