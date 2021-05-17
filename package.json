@@ -1,7 +1,7 @@
 {
   "name": "test-ava",
   "version": "1.0.0",
-  "description": "",
+  "description": "- Forkear este repo\r - Clonar tu fork\r - Crear y exportar la clase **ListaDeProductos** que extiende la clase **ListaDeCosas**.\r - La clase **ListaDeProductos** debe:\r   - tener un método addProduct que reciba una instancia de la clase **Product** como parámetro y la agregue usando el método **add** que ya existe en la superclase. El método debe validar que no exista un producto con el mismo id antes de agregarlo\r   - extender el constructor original para que además de recibir un nombre para la lista, lea el archivo **products.json** y agregue todos los productos del JSON usando el método addProduct\r   - tener un método **getProduct(id:number):Product** que devuelva el producto con ese **id**\r   - tener un método **removeProduct(id:number):Product** que elimine el producto con ese **id**\r   - tener un método **getSortedByPrice** que reciba un parametro **order:string** con solo dos valores posibles: \"asc\" o \"desc\". (Chequear este link https://mariusschulz.com/blog/string-literal-types-in-typescript#string-literal-types-and-union-types). Este método debe devolver toda la lista de productos **Product[]** en orden _ascendente_ o _descendente_ dependiendo del parámetro **order** usando https://lodash.com/docs/4.17.15#orderBy\r - Correr los tests localmente ejecutando `npm run test`y crear un Pull Request desde GitHub",
   "main": "index.ts",
   "scripts": {
     "test": "ava"
@@ -21,8 +21,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^15.3.0",
     "ava": "^3.15.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
-  }
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PabloMartinsDeMaltoz/extendiendo-clases.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PabloMartinsDeMaltoz/extendiendo-clases/issues"
+  },
+  "homepage": "https://github.com/PabloMartinsDeMaltoz/extendiendo-clases#readme"
 }
