@@ -55,8 +55,8 @@ class ListaDeProductos extends ListaDeCosas {
     });
   }
   getSortedByPrice(order: "asc" | "desc") {
-    const product = this.getCosas();
-    return orderBy(product, ["id", "price"], [order, order]);
+    const product = this.cosas;
+    return orderBy(product, ["price"], [order]);
   }
 }
 
