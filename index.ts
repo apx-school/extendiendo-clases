@@ -1,6 +1,6 @@
 import * as fs from "fs"
-import * as indexOf from "lodash/indexOf"
-import * as reverse from "lodash/reverse"
+import * as pullAllBy from "lodash/pullAllBy"
+import * as orderBy from "lodash/orderBy"
 
 class ListaDeCosas {
   name: string;
@@ -65,34 +65,15 @@ class ListaDeProductos extends ListaDeCosas {
 
   // tener un método removeProduct(id:number):Product que elimine el producto con ese id.
   removeProduct(id:number) {
-    const elementoEliminar = this.cosas.find((e)=>{return e.id == id})
-    const index = indexOf(this.cosas, elementoEliminar)
-    this.cosas.splice(index, 1)
+    pullAllBy(this.cosas, [{id: id}], "id")
   }
 
   // tener un método getSortedByPrice que reciba un parámetro order:string con solo dos valores posibles: asc o desc.
   getSortedByPrice (order: "asc" | "desc"){
-     const ordenado = this.cosas.sort((a , b) =>{
-      if (a.price > b.price) {
-        return 1;
-      }
-      if (a.price < b.price) {
-        return -1;
-      }
-      return 0;
-    })
-    if (order == "asc") {
-      return ordenado
-    } if (order == "desc") {
-      return reverse(ordenado)
-    }
+    return orderBy(this.cosas, ["price"], [order])
   }
 }
-function main(){
-const miLista = new ListaDeProductos("Hernan")
-const miProducto = new Product("prd", 500, 2)
-miLista.addProduct(miProducto)
-}
 
-main()
+
+
 export { ListaDeProductos, Product };
