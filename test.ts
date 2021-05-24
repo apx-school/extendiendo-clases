@@ -1,7 +1,8 @@
 import test from "ava";
 import { ListaDeProductos } from "./index";
 import * as products from "./products.json";
-import * as orderBy from "lodash/orderBy";
+// import * as orderBy from "lodash/orderBy";
+import * as _ from "lodash";
 
 test("Testeo el constructor", (t) => {
   const lista = new ListaDeProductos("marce");
