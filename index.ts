@@ -80,7 +80,7 @@ return orderBy(this.cosas, ["price"], [order])
  // {  'usuario' :  'barney' ,  'edad' :  34  } ,
  // {  'usuario' :  'fred' ,    'edad' :  40  } ,
 //  {  'usuario' :  'barney' ,  'edad' :  36  }
-/];
+// /];
  
 // Ordenar por `usuario` en orden ascendente y por` edad` en orden descendente.
 // orderBy (usuarios ,  [ 'usuario' ,  'edad' ] ,  [ 'asc' ,  'desc' ]);
