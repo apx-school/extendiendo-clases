@@ -1,7 +1,7 @@
 import test from "ava";
 import { ListaDeProductos } from "./index";
 import * as products from "./products.json";
-import * as orderBy from "lodash/orderBy";
+import * as _ from "lodash";
 
 test("Testeo el constructor", (t) => {
   const lista = new ListaDeProductos("marce");
@@ -35,7 +35,7 @@ test("Testeo el removeProduct", (t) => {
 test("Testeo el getSortedByPrice", (t) => {
   const lista = new ListaDeProductos("marce");
   t.deepEqual(
-    orderBy(lista.cosas, "price", "desc"),
+    _.orderBy(lista.cosas, "price", "desc"),
     lista.getSortedByPrice("desc")
   );
 });
