@@ -37,5 +37,5 @@ test("Testeo el getSortedByPrice", (t) => {
   t.deepEqual(
     orderBy(lista.cosas, "price", "desc"),
     lista.getSortedByPrice("desc")
-  );
+  ); 
 });
