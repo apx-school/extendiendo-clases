@@ -20,7 +20,7 @@ test("Testeo el addProduct", (t) => {
   const myP = { price: 33, id: 123, name: "mi producto" };
   lista.addProduct(myP);
   const myP2 = lista.getProduct(myP.id);
-  t.deepEqual(myP2, myP);
+  t.deepEqual(myP2, myP); // Chusmear esto de ava
 });
 
 test("Testeo el removeProduct", (t) => {
