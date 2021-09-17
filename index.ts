@@ -1,6 +1,8 @@
 import * as fs from "fs";
-import * as orderBy from "lodash/orderBy";
 import * as remove from "lodash/remove";
+import { type } from "os";
+import * as orderBy from "lodash/orderBy";
+
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
@@ -30,34 +32,37 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name: string) {
     super(name);
-    const archivoOriginal = fs.readFileSync(__dirname + "/products.json");
-    const archivoString = archivoOriginal.toString();
-    const archivoDatos = JSON.parse(archivoString);
-    archivoDatos.forEach((p) => {
+    var data: any = fs.readFileSync(__dirname + "/products.json").toString();
+    var todosLosProductos = JSON.parse(data);
+    todosLosProductos.forEach((p) => {
       this.addProduct(p);
     });
   }
-  addProduct(unProducto: Product) {
-    var elProducto = this.cosas.find(function (item: any) {
-      if (item.id == unProducto.id) {
-        return unProducto;
+  addProduct(producto: Product) {
+    var productoValidado = this.cosas.find((p) => {
+      if (p.id == producto.id) {
+        return producto;
       }
     });
-    if (elProducto != unProducto) {
-      this.add(unProducto);
+    if (productoValidado != producto) {
+      this.add(producto);
     }
   }
-
   getProduct(id: number): Product {
-    var idProducto = this.cosas.find(function (item: any) {
-      if (item.id == id) {
-        return item;
+    var productoSeleccionado = this.cosas.find((p) => {
+      if (p.id == id) {
+        return p;
       }
     });
-    return idProducto;
+    return productoSeleccionado;
   }
   removeProduct(id: number): Product {
-    return remove(this.cosas, (p) => p.id == id);
+    var productoARemover = this.cosas.find((p) => {
+      if (p.id == id) {
+        return p;
+      }
+    });
+    return remove(this.cosas, productoARemover);
   }
   getSortedByPrice(order: string) {
     type order = "asc" | "desc";
