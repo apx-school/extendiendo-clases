@@ -56,8 +56,8 @@ class ListaDeProductos extends ListaDeCosas {
       this.cosas = this.cosas;
     } else {
       // console.log("no incluido");
-      this.cosas = this.cosas.concat(producto); //funciona pero se tiene que usar metodo add
-      // this.add(producto);
+      // this.cosas = this.cosas.concat(producto); //funciona pero se tiene que usar metodo add
+      this.add(producto);
     }
     // // return this.cosas; // solo para corroborar
   }
