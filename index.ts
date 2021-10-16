@@ -31,7 +31,7 @@ class ListaDeProductos extends ListaDeCosas {
 
   constructor(name:string){
     super(name);
-    const listaDeProd = readFileSync("./products.json");
+    const listaDeProd = readFileSync(__dirname + "/products.json");
     const productosAString = listaDeProd.toString();
     const parseados = JSON.parse(productosAString);
     this.cosas = parseados;
@@ -59,8 +59,9 @@ class ListaDeProductos extends ListaDeCosas {
   //que elimine el producto con ese id.
 
   removeProduct (id:number){
-    const arrayFiltrado = this.cosas.filter(prod => prod.id !== id);
-    this.cosas = arrayFiltrado;
+    // const arrayFiltrado = this.cosas.filter(prod => prod.id !== id);
+    // this.cosas = arrayFiltrado;
+    _.remove(this.cosas, ( prod=> prod.id == id));
   }
 
   //tener un método getSortedByPrice que reciba un parámetro order:string
