@@ -1,5 +1,5 @@
 import * as remove from "lodash/remove";
-import * as orderBy from "lodash/remove";
+import * as orderBy from "lodash/orderBy";
 import * as fs from "fs";
 
 class ListaDeCosas {
