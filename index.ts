@@ -1,8 +1,15 @@
+import * as fs from "fs";
+import * as remove from "lodash/remove";
+import * as orderBy from "lodash/orderBy";
+
+function getAll() {
+  return JSON.parse(fs.readFileSync(__dirname + "/products.json").toString());
+}
+
 class ListaDeCosas {
   name: string;
-  cosas: any[] = [];
+  cosas: Product[] = [];
   constructor(name: string) {
-    // nombre de esta lista
     this.name = name;
   }
   add(nuevaCosa) {
@@ -24,6 +31,34 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  constructor(name: string) {
+    super(name);
+    this.cosas = getAll();
+  }
+  addProduct(product: any) {
+    this.cosas.forEach((producto) => {
+      if (!(producto.id == product.id)) {
+        this.add(product);
+      }
+    });
+  }
+  getProduct(id: number) {
+    return this.cosas.find((producto) => {
+      if (producto.id == id) {
+        return producto;
+      }
+    });
+  }
+  removeProduct(id: number) {
+    remove(this.cosas, (producto) => {
+      return producto.id == id;
+    });
+  }
+  getSortedByPrice(order: string) {
+    type order = "asc" | "desc";
+    return orderBy(this.cosas, ["price"], order);
+  }
+}
 
 export { ListaDeProductos, Product };
