@@ -3,6 +3,10 @@ import { ListaDeProductos } from "./index";
 import * as products from "./products.json";
 import * as orderBy from "lodash/orderBy";
 
+test("Testeo de prueba", (t) => {
+  t.is("hola", "hola");
+});
+
 test("Testeo el constructor", (t) => {
   const lista = new ListaDeProductos("marce");
   t.is(lista.name, "marce");

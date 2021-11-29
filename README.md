@@ -10,3 +10,7 @@
   - tener un método **removeProduct(id:number):Product** que elimine el producto con ese **id**
   - tener un método **getSortedByPrice** que reciba un parametro **order:string** con solo dos valores posibles: "asc" o "desc". (Chequear este link https://mariusschulz.com/blog/string-literal-types-in-typescript#string-literal-types-and-union-types). Este método debe devolver toda la lista de productos **Product[]** en orden _ascendente_ o _descendente_ dependiendo del parámetro **order** usando https://lodash.com/docs/4.17.15#orderBy
 - Correr los tests localmente ejecutando `npm run test`y crear un Pull Request desde GitHub
+
+# Tip
+
+Comentá todos los tests del archivo test.ts y andá descomentando los que vayas trabajando.
