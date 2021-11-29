@@ -3,9 +3,15 @@ import { ListaDeProductos } from "./index";
 import * as products from "./products.json";
 import * as orderBy from "lodash/orderBy";
 
-test("Testeo de prueba", (t) => {
+test("Test de prueba", (t) => {
   t.is("hola", "hola");
 });
+
+// todos los tests que siguen van a fallar
+// apenas te bajes este repo.
+// comentalos y empezá a descomentar de a uno
+// a medida que vayas avanzando en el objetivo
+// de cada test
 
 test("Testeo el constructor", (t) => {
   const lista = new ListaDeProductos("marce");
