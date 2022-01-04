@@ -25,7 +25,7 @@ test("Testeo que el constructor cargue el products.json", (t) => {
   t.deepEqual(cosas, products);
 });
 
-test("Testeo el addProduct", (t) => {
+ test("Testeo el addProduct", (t) => {
   const lista = new ListaDeProductos("marce");
   const myP = { price: 33, id: 123, name: "mi producto" };
   lista.addProduct(myP);
@@ -48,4 +48,4 @@ test("Testeo el getSortedByPrice", (t) => {
     orderBy(lista.cosas, "price", "desc"),
     lista.getSortedByPrice("desc")
   );
-});
+}); 
