@@ -14,22 +14,6 @@ class ListaDeCosas {
   getCosas() {
     return this.cosas;
   }
-  getProduct(id: number): Product {
-    return this.cosas.find((p) => p.id === id);
-  }
-  removeProduct(id: number): Product {
-    let aux;
-    this.cosas.find((p, i) => {
-      if (p.id === id) {
-        aux = p;
-        this.cosas.splice(i, 1);
-      }
-    });
-    return aux;
-  }
-  getSortedByPrice(order: "asc" | "desc") {
-    return orderBy(this.cosas, "price", order);
-  }
 }
 
 class Product {
@@ -60,6 +44,26 @@ class ListaDeProductos extends ListaDeCosas {
     if (!existeProduct) {
       this.add(product);
     }
+  }
+  getProduct(id: number): Product {
+    let cosas = this.getCosas();
+    return cosas.find((p) => p.id === id);
+  }
+  removeProduct(id: number): Product {
+    let cosas = this.getCosas();
+    let aux;
+    cosas.find((p, i) => {
+      if (p.id === id) {
+        aux = p;
+        cosas.splice(i, 1);
+      }
+    });
+    return aux;
+  }
+  getSortedByPrice(order: "asc" | "desc") {
+    let cosas = this.getCosas();
+
+    return orderBy(cosas, "price", order);
   }
 }
 
