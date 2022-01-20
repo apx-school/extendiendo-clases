@@ -24,6 +24,13 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  constructor (name:string){
+    super(name)
+  }
+  addProducts(product:Product){
+    this.add (product
+  }
+}
 
 export { ListaDeProductos, Product };
