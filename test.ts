@@ -14,16 +14,16 @@ test("Test de prueba", (t) => {
 // de cada test
 
 test("Testeo el constructor", (t) => {
-  const lista = new ListaDeProductos("marce");
-  t.is(lista.name, "marce");
+    const lista = new ListaDeProductos("marce");
+    t.is(lista.name, "marce");
 });
 
 test("Testeo que el constructor cargue el products.json", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const cosas = lista.getCosas();
+     const lista = new ListaDeProductos("marce");
+     const cosas = lista.getCosas();
 
-  t.deepEqual(cosas, products);
-});
+     t.deepEqual(cosas, products);
+   });
 
 test("Testeo el addProduct", (t) => {
   const lista = new ListaDeProductos("marce");
