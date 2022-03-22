@@ -29,7 +29,7 @@ class ListaDeProductos extends ListaDeCosas {
    constructor(name: string) {
       super(name);
       const productsFromJSON = JSON.parse(
-         readFileSync("./products.json").toString()
+         readFileSync(__dirname + "/products.json").toString()
       );
       productsFromJSON.forEach((p) => {
          this.addProduct(p);
@@ -45,9 +45,8 @@ class ListaDeProductos extends ListaDeCosas {
    }
    removeProduct(id: number) {
       const products = this.getCosas();
-      const productToRemove = products.find((p) => p.id === id);
       products.forEach((p, i) => {
-         if (p.id === productToRemove.id) {
+         if (p.id === id) {
             products.splice(i, 1);
          }
       });
