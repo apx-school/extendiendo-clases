@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as remove from "lodash/remove";
-import * as orderBy from "lodash/orderby";
+import * as orderBy from "lodash/orderBy";
 
 class ListaDeCosas {
   name: string;
@@ -57,10 +57,6 @@ class ListaDeProductos extends ListaDeCosas {
     return orderBy(this.cosas, ["price"], [order]);
   }
 }
-//getSortedByPrice(order: string) {}
-//const nueva = new ListaDeCosas("vero");
-//nueva.getCosas();
-//const lista = new ListaDeProductos("marce");
-//∫const cosas = lista.getCosas();
+
 
 export { ListaDeProductos, Product };
