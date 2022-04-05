@@ -55,6 +55,13 @@ class ListaDeProductos extends ListaDeCosas {
       this.products.push(product);
     }   
   };
+  getProduct(id:number):Product{
+    const productFinded = this.products.find((x)=>{
+      return x.id == id
+    })
+
+    return productFinded
+  };
 }
 
 export { ListaDeProductos, Product };
