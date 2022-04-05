@@ -13,6 +13,9 @@ test("Test de prueba", (t) => {
 // a medida que vayas avanzando en el objetivo
 // de cada test
 
+
+
+
 test("Testeo el constructor", (t) => {
   const lista = new ListaDeProductos("marce");
   t.is(lista.name, "marce");
@@ -25,27 +28,27 @@ test("Testeo que el constructor cargue el products.json", (t) => {
   t.deepEqual(cosas, products);
 });
 
-test("Testeo el addProduct", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const myP = { price: 33, id: 123, name: "mi producto" };
-  lista.addProduct(myP);
-  const myP2 = lista.getProduct(myP.id);
-  t.deepEqual(myP2, myP);
-});
+// test("Testeo el addProduct", (t) => {
+//   const lista = new ListaDeProductos("marce");
+//   const myP = { price: 33, id: 123, name: "mi producto" };
+//   lista.addProduct(myP);
+//   const myP2 = lista.getProduct(myP.id);
+//   t.deepEqual(myP2, myP);
+// });
 
-test("Testeo el removeProduct", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const myP = { price: 33, id: 123, name: "mi producto" };
-  lista.addProduct(myP);
-  lista.removeProduct(myP.id);
-  const p = lista.getProduct(myP.id);
-  t.falsy(p);
-});
+// test("Testeo el removeProduct", (t) => {
+//   const lista = new ListaDeProductos("marce");
+//   const myP = { price: 33, id: 123, name: "mi producto" };
+//   lista.addProduct(myP);
+//   lista.removeProduct(myP.id);
+//   const p = lista.getProduct(myP.id);
+//   t.falsy(p);
+// });
 
-test("Testeo el getSortedByPrice", (t) => {
-  const lista = new ListaDeProductos("marce");
-  t.deepEqual(
-    orderBy(lista.cosas, "price", "desc"),
-    lista.getSortedByPrice("desc")
-  );
-});
+// test("Testeo el getSortedByPrice", (t) => {
+//   const lista = new ListaDeProductos("marce");
+//   t.deepEqual(
+//     orderBy(lista.cosas, "price", "desc"),
+//     lista.getSortedByPrice("desc")
+//   );
+// });
