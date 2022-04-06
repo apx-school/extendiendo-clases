@@ -42,25 +42,26 @@ class ListaDeProductos extends ListaDeCosas {
       this.addProduct(element);
     };
   };
-  addProduct(product:Product){
-    const idProducto = product.id;
-    const existeElProducto = this.products.find((x)=>{
-      x.id = idProducto
-    });
+  addProduct(productToAdd:Product){
+    
+    this.products.push(productToAdd);
+  
+    
 
-    if(existeElProducto != undefined){
-      return "Error, el producto ya existe";
+    // if(existeElProducto != undefined){
+    //   return "Error, el producto ya existe";
 
-    }else{
-      this.products.push(product);
-    }   
+    // }else{
+      
+    // }   
   };
   getProduct(id:number):Product{
-    const productFinded = this.products.find((x)=>{
-      return x.id == id
-    })
-
-    return productFinded
+    const indexProd = this.products.findIndex((x)=>{
+      return x.id == id;
+    });
+    
+    const foundProd = this.products[indexProd];
+    return foundProd
   };
 }
 
