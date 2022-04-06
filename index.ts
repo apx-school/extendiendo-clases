@@ -39,14 +39,19 @@ class ListaDeProductos extends ListaDeCosas {
     super(name); 
     for (let i = 0; i < productsJson.length; i++) {
       const element = productsJson[i];
-      this.addProduct(element);
+      this.products.push(element);
     };
   };
   addProduct(productToAdd:Product){
-    
-    this.products.push(productToAdd);
-  
-    
+      
+    for (let i=0; i<=this.products.length; i++) {
+      const element = this.products[i];
+      if (element.id != productToAdd.id){
+        this.products.push(productToAdd);
+      } else {
+        return "Ya existe un producto con ese ID"
+      };
+    };
 
     // if(existeElProducto != undefined){
     //   return "Error, el producto ya existe";
@@ -62,6 +67,16 @@ class ListaDeProductos extends ListaDeCosas {
     
     const foundProd = this.products[indexProd];
     return foundProd
+  };
+  removeProduct(id:number):Product[]{
+    this.products.find((x)=>{
+      if(x.id == id){
+        const product = this.getProduct(x.id);
+        const indice = this.products.indexOf(product)
+        const modifiedArray = this.products.slice(indice, 1);
+        return modifiedArray
+      };
+    });
   };
 }
 
