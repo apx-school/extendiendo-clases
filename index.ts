@@ -68,7 +68,7 @@ class ListaDeProductos extends ListaDeCosas {
     const foundProd = this.products[indexProd];
     return foundProd
   };
-  removeProduct(id:number):Product[]{
+  removeProduct(id:number):Product{
     this.products.find((x)=>{
       if(x.id == id){
         const product = this.getProduct(x.id);
