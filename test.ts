@@ -13,6 +13,9 @@ test("Test de prueba", (t) => {
 // a medida que vayas avanzando en el objetivo
 // de cada test
 
+
+
+
 test("Testeo el constructor", (t) => {
   const lista = new ListaDeProductos("marce");
   t.is(lista.name, "marce");
