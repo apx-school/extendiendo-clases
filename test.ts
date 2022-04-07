@@ -45,10 +45,10 @@ test("Testeo el removeProduct", (t) => {
   t.falsy(p);
 });
 
-// test("Testeo el getSortedByPrice", (t) => {
-//   const lista = new ListaDeProductos("marce");
-//   t.deepEqual(
-//     orderBy(lista.cosas, "price", "desc"),
-//     lista.getSortedByPrice("desc")
-//   );
-// });
+test("Testeo el getSortedByPrice", (t) => {
+  const lista = new ListaDeProductos("marce");
+  t.deepEqual(
+    orderBy(lista.cosas, "price", "desc"),
+    lista.getSortedByPrice("desc")
+  );
+});

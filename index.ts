@@ -1,5 +1,6 @@
 import * as productsJson from "./products.json";
 
+// Llevó dos dias completarlo
 
 class ListaDeCosas {
   name: string;
@@ -63,11 +64,7 @@ class ListaDeProductos extends ListaDeCosas {
     return foundProd
   };
   removeProduct(id:number){
-    
-    // const modifiedArray = this.products.splice(1, 2);
-    // console.table(this.products)
-    // console.table(modifiedArray);
-    // return modifiedArray
+
     this.products.find((x)=>{
 
       if(x.id == id){
@@ -79,6 +76,39 @@ class ListaDeProductos extends ListaDeCosas {
       };
     });
   };
+  getSortedByPrice(order: "asc"|"desc"){
+    switch (order){
+      
+      case "asc":
+        this.products.sort((a,b)=>{
+          if (a.price < b.price) {
+            return -1;
+          }
+          if (a.price > b.price) {
+            return 1;
+          }else
+          // a debe ser igual b
+          return 0;
+        });
+      break;
+
+      case "desc":
+        this.products.sort((a,b)=>{
+          if (a.price < b.price) {
+            return 1;
+          }
+          if (a.price > b.price) {
+            return -1;
+          }else
+          // a debe ser igual b
+          return 0;
+        });
+      break;
+    };
+
+    return this.products
+  }
 }
+
 
 export { ListaDeProductos, Product };
