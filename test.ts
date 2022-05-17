@@ -26,12 +26,13 @@ test("Testeo que el constructor cargue el products.json", (t) => {
 });
 
 test("Testeo el addProduct", (t) => {
-  const lista = new ListaDeProductos("marce");
+const lista = new ListaDeProductos("marce");
   const myP = { price: 33, id: 123, name: "mi producto" };
   lista.addProduct(myP);
-  const myP2 = lista.getProduct(myP.id);
+const myP2 = lista.getProduct(myP.id);
   t.deepEqual(myP2, myP);
 });
+
 
 test("Testeo el removeProduct", (t) => {
   const lista = new ListaDeProductos("marce");
@@ -44,8 +45,9 @@ test("Testeo el removeProduct", (t) => {
 
 test("Testeo el getSortedByPrice", (t) => {
   const lista = new ListaDeProductos("marce");
+  console.log(lista)
   t.deepEqual(
-    orderBy(lista.cosas, "price", "desc"),
-    lista.getSortedByPrice("desc")
+  orderBy(lista.cosas, "price", "desc"),
+  lista.getSortedByPrice("desc")
   );
 });
