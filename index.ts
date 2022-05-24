@@ -1,3 +1,7 @@
+let fs = require("fs");
+import * as remove from "lodash/remove";
+import * as reverse from "lodash/reverse";
+
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
@@ -24,6 +28,51 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  constructor(name: string) {
+    super(name);
+    const productos = JSON.parse(fs.readFileSync(__dirname + "/products.json"));
+    productos.forEach((i) => {
+      this.addProduct(i);
+    });
+  }
+  addProduct(producto: Product) {
+    if (
+      this.cosas.find((i) => {
+        return i.id == producto.id;
+      })
+    ) {
+      return;
+    }
+    this.add(producto);
+  }
+  getProduct(id: number): Product {
+    const result: Product = this.cosas.find((i) => {
+      return i.id == id;
+    });
+    return result;
+  }
+  removeProduct(id: number): Product {
+    const result = remove(this.cosas, (i) => {
+      return i.id == id;
+    });
+    return result;
+  }
+  getSortedByPrice(order: string) {
+    var result = this.cosas.sort((a, b) => {
+      if (a.price < b.price) {
+        return -1;
+      }
+      if (a.price > b.price) {
+        return 1;
+      }
+      return 0;
+    });
+    if (order == "desc") {
+      result = reverse(result);
+    }
+    return result;
+  }
+}
 
 export { ListaDeProductos, Product };
