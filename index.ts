@@ -50,8 +50,7 @@ class ListaDeProductos extends ListaDeCosas {
 		let idFindIndex = this.getCosas().findIndex((e) => e.id == id);
 		return this.cosas.splice(idFindIndex, 1);
 	}
-	getSortedByPrice(order: string) {
-		type order = "asc" | "desc";
+	getSortedByPrice(order: "asc" | "desc") {
 		return orderBy(this.getCosas(), "price", order);
 	}
 }
