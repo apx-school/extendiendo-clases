@@ -1,7 +1,7 @@
+/*
 import * as fs from "fs";
 import * as remove from "lodash/remove";
 import * as orderBy from "lodash/orderBy";
-
 class ListaDeCosas {
 	name: string;
 	cosas: any[] = [];
@@ -27,30 +27,28 @@ class Product {
 		this.id = id;
 	}
 }
-// PARA LLER EL ARCHIVO IMPORTO Y USO EL ARCHIVO FS
+
 class ListaDeProductos extends ListaDeCosas {
-	constructor(name: string) {
-		super(name);
+	constructor(nombre: string) {
+		super(nombre);
 
 		const contenidoDelArchivo = fs
-			.readFileSync(__dirname + "/products.json")
+			.readFileSync(__dirname + "products.json")
 			.toString();
-		const productosArchivo = JSON.parse(contenidoDelArchivo);
-
-		productosArchivo.forEach((p) => {
-			this.addProduct(p);
+		const archivo = JSON.parse(contenidoDelArchivo);
+		archivo.forEach((a) => {
+			this.addProduct(a);
 		});
 	}
-	addProduct(product: Product) {
-		this.add(product);
+	addProduct(producto: Product) {
+		this.add(producto);
 	}
 	getProduct(id: number): Product {
-		const cosas = this.getCosas();
-		return cosas.find((c) => {
-			return c.id == id;
+		const cosa = this.cosas;
+		return cosa.find((p) => {
+			return p.id == id;
 		});
 	}
-	// EN ESTOS DOS ULTIMOS CASOS S EBUSCO DIRECTAMENTE EN lodash LA FUNCION QUE ELEIMINA REMOVE Y QUE ORDENA orderBy y LISTO
 	removeProduct(id: number) {
 		remove(this.cosas, (a) => {
 			return a.id == id;
@@ -62,4 +60,4 @@ class ListaDeProductos extends ListaDeCosas {
 }
 
 export { ListaDeProductos, Product };
-// ESTUVE HASTA TARDE POR QUE ME FALTA PONER LOS RETURN EN EL METODO getProducts y en removeProducts
+*/
