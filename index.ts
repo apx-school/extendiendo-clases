@@ -1,6 +1,4 @@
 import * as fs from "fs";
-import { dirname } from "path";
-import { json } from "stream/consumers";
 import * as remove from "lodash/remove";
 import * as orderBy from "lodash/orderBy";
 
@@ -34,9 +32,10 @@ class ListaDeProductos extends ListaDeCosas {
 	constructor(name: string) {
 		super(name);
 		const contenidoDelArchivo = fs
-			.readFileSync(__dirname + "/product.json")
+			.readFileSync(__dirname + "/products.json")
 			.toString();
 		const productosArchivo = JSON.parse(contenidoDelArchivo);
+
 		productosArchivo.foreach((p) => {
 			this.addProduct(p);
 		});
@@ -46,18 +45,16 @@ class ListaDeProductos extends ListaDeCosas {
 	}
 	getProduct(id: number): Product {
 		const cosas = this.getCosas();
-		return cosas.find((a) => {
-			a.id == id;
+		return cosas.find((c) => {
+			c.id == id;
 		});
 	}
 	// EN ESTOS DOS ULTIMOS CASOS S EBUSCO DIRECTAMENTE EN lodash LA FUNCION QUE ELEIMINA REMOVE Y QUE ORDENA orderBy y LISTO
-	removeProduct(id: number): Product {
-		const arraynuevo = remove(this.cosas, (a) => a.id == id);
-		return arraynuevo;
+	removeProduct(id: number) {
+		remove(this.cosas, (a) => a.id == id);
 	}
 	getSortedByPrice(order: "asc" | "desc") {
-		const ordenado = orderBy(this.cosas["price"], [order]);
-		return ordenado;
+		return orderBy(this.cosas["price"], [order]);
 	}
 }
 
