@@ -2,8 +2,8 @@ import * as remove from './node_modules/lodash/remove'
 import * as ordenar from './node_modules/lodash/orderBy'
 const fs = require('fs');
 
-function abrirArchivoyConvertirloEnObjeto(nombreArchivo:string) {
-    const archivo = fs.readFileSync(nombreArchivo);
+function abrirArchivoJSON(nombreArchivo:string) {
+    const archivo = fs.readFileSync(__dirname + "/" + nombreArchivo);
     const archivoEnTexto = archivo.toString();
     return JSON.parse(archivoEnTexto);
 }
@@ -43,8 +43,8 @@ class ListaDeProductos extends ListaDeCosas {
   }
   constructor(name: string){
     super(name)
-    const listaDeElementos = abrirArchivoyConvertirloEnObjeto('./products.json')   
-    listaDeElementos.forEach((p) => this.add(p))
+    const elementosDelJSON = abrirArchivoJSON('products.json')   
+    elementosDelJSON.forEach((p) => this.add(p))
   }
 
   getProduct(id:number){
