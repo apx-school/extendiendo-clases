@@ -1,7 +1,7 @@
 import test from "ava";
 import { ListaDeProductos } from "./index";
 import * as products from "./products.json";
-import * as orderBy from "lodash/orderBy";
+import * as orderBy from "./node_modules/lodash/orderBy";
 
 test("Test de prueba", (t) => {
   t.is("hola", "hola");
@@ -49,3 +49,5 @@ test("Testeo el getSortedByPrice", (t) => {
     lista.getSortedByPrice("desc")
   );
 });
+
+
