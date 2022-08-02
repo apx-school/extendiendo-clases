@@ -30,7 +30,8 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name: string){
     super(name);
-    const data = fs.readFileSync('./products.json').toString();
+    const data = fs.readFileSync(__dirname + "/products.json").toString();
+    // Esto es un array
     const dataJSON = JSON.parse(data);
     dataJSON.forEach((object) => {
       this.addProduct(object);
@@ -51,6 +52,7 @@ class ListaDeProductos extends ListaDeCosas {
     const productConId = this.cosas.find((product) => {
         return product.id === id;
       })
+      console.log("hola")
     return productConId;
   }
   removeProduct(id: number):Product{
