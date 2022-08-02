@@ -52,7 +52,6 @@ class ListaDeProductos extends ListaDeCosas {
     const productConId = this.cosas.find((product) => {
         return product.id === id;
       })
-      console.log("hola")
     return productConId;
   }
   removeProduct(id: number):Product{
