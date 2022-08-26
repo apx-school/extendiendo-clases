@@ -33,7 +33,7 @@ class ListaDeProductos extends ListaDeCosas {
   constructor(name:string){
     super(name)
     const contenidoDelArchivo = fs
-    .readFileSync(__dirname + "./Products.json")
+    .readFileSync(__dirname + "/products.json")
     .toString();
     const productosDelArchivo = JSON.parse(contenidoDelArchivo);
     productosDelArchivo.forEach(p=> {
