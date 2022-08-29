@@ -35,23 +35,18 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name:string ,){
     super(name)
-    const productsJson = fs.readFileSync(__dirname +"products.json").toString()
+    const productsJson = fs.readFileSync(__dirname +"/products.json").toString();
     const jsonParseado = JSON.parse(productsJson)
 
-    jsonParseado.forEach((p) => {
-       this.addProduct(p)
+    jsonParseado.forEach((x) => {
+       this.addProduct(x) 
     });
     
-
     }
     // *tener un método addProduct que reciba una instancia de la clase Product como parámetro y la agregue usando el método add que ya existe en la superclase. El método debe validar que no exista un producto con el mismo id antes de agregarlo.
    
   addProduct(product:Product){
-    const prodEncontrado = this.cosas.find(x => x.id == product.id)
-    if (prodEncontrado != product.id){
-      this.add(prodEncontrado)
-    }
-
+    this.add(product)
   }
   // *tener un método getProduct(id:number):Product que devuelva el producto con ese id.
   getProduct(id:number):Product{
@@ -60,22 +55,19 @@ class ListaDeProductos extends ListaDeCosas {
    return cosas.find((x) => x.id === id )
   }
 // *tener un método removeProduct(id:number):Product que elimine el producto con ese id.
-  removeProduct(id:number):Product{
-    const cosas = this.getCosas()   
-    const remov = remove( cosas , (x)=>{
-      x.id == id
-    })
-    return remov
+  removeProduct(id:number){
+     
+     remove( this.cosas , (x) => x.id == id)
+    
   }
 // *tener un método getSortedByPrice que reciba un parámetro order:string con solo dos valores posibles: asc o desc. 
 
   getSortedByPrice(order:"asc"|"desc" ){
-    const cosas = this.getCosas()
+    const cosas = this.cosas
     const resultado = orderBy(cosas, ["price"], order)
     return resultado
   };
 };
-
 
 
 
