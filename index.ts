@@ -35,7 +35,7 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name:string ,){
     super(name)
-    const productsJson = fs.readFileSync("./products.json").toString()
+    const productsJson = fs.readFileSync(__dirname +"products.json").toString()
     const jsonParseado = JSON.parse(productsJson)
 
     jsonParseado.forEach((p) => {
@@ -56,8 +56,8 @@ class ListaDeProductos extends ListaDeCosas {
   // *tener un método getProduct(id:number):Product que devuelva el producto con ese id.
   getProduct(id:number):Product{
    const cosas = this.getCosas() 
-   const resultado = cosas.find(x => x.id == id )
-   return resultado
+   
+   return cosas.find((x) => x.id === id )
   }
 // *tener un método removeProduct(id:number):Product que elimine el producto con ese id.
   removeProduct(id:number):Product{
@@ -80,14 +80,3 @@ class ListaDeProductos extends ListaDeCosas {
 
 
 export { ListaDeProductos, Product };
-
-function main(){
-  console.log("Hola")
-  const productsJson = fs.readFileSync("./products.json").toString()
-  console.log(productsJson)
-  const jsonParseado = JSON.parse(productsJson)
-  console.log(jsonParseado)
-  console.log(remove)
-
-};
-main();
