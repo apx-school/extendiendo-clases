@@ -701,6 +701,11 @@
   "resolved" "https://registry.npmjs.org/load-json-file/-/load-json-file-7.0.1.tgz"
   "version" "7.0.1"
 
+"loadash@^1.0.0":
+  "integrity" "sha512-xlX5HBsXB3KG0FJbJJG/3kYWCfsCyCSus3T+uHVu6QL6YxAdggmm3QeyLgn54N2yi5/UE6xxL5ZWJAAiHzHYEg=="
+  "resolved" "https://registry.npmjs.org/loadash/-/loadash-1.0.0.tgz"
+  "version" "1.0.0"
+
 "locate-path@^7.1.0":
   "integrity" "sha512-vJXaRMJgRVD3+cUZs3Mncj2mxpt5mP0EmNOsxRSZRMlbqjvxzDEOIUWXGmavo0ZC9+tNZCBLQ66reA11nbpHZg=="
   "resolved" "https://registry.npmjs.org/locate-path/-/locate-path-7.1.1.tgz"
