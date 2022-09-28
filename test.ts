@@ -44,8 +44,9 @@ test("Testeo el removeProduct", (t) => {
 
 test("Testeo el getSortedByPrice", (t) => {
   const lista = new ListaDeProductos("marce");
-  t.deepEqual(
-    orderBy(lista.cosas, "price", "desc"),
-    lista.getSortedByPrice("desc")
-  );
+  console.log(lista.cosas),
+    t.deepEqual(
+      orderBy(lista.cosas, "price", "desc"),
+      lista.getSortedByPrice("desc")
+    );
 });
