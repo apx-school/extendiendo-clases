@@ -26,8 +26,6 @@ class Product {
 }
 
 class ListaDeProductos extends ListaDeCosas {
-  products: Product[];
-
   constructor(name: string) {
     super(name);
     products.forEach((product) => this.addProduct(product));
