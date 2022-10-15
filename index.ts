@@ -33,19 +33,20 @@ class Product {
 
 class ListaDeProductos extends ListaDeCosas {
   addProduct(producto: Product){
-    this.cosas.find(function (p) {
+    this.cosas.find(function(p){
       if (p.id === producto.id){
-        throw "repeated ID";  // cambiarlo?
-      } else {
-        // .add(producto);
-      }
+        throw "repeated ID"; 
+      };
     });
+    this.add(producto);
   };
   constructor(name: string){
     super(name);
-    const texto = fs.readFileSync(__dirname + "/products.json");
+    const texto = fs.readFileSync(__dirname + "/products.json").toString();
     const textoParseado = JSON.parse(texto);
-    this.addProduct(textoParseado);
+    textoParseado.forEach((p)=>{
+      this.addProduct(p);
+    });
   }
   getProduct(id:number): Product{
     // this.cosas.find((p)=> p.id === id)
@@ -58,19 +59,10 @@ class ListaDeProductos extends ListaDeCosas {
   };
   removeProduct(id:number): Product{
     const productoEncontrado2 = this.cosas.find((p)=> p.id === id);
-    return lodash.remove(productoEncontrado2); 
+    return lodash.remove(this.cosas, productoEncontrado2);   // also "pull"
   };
   getSortedByPrice(order: "asc" | "desc"){
-    this.cosas.sort(function (a, b) {
-      if (order === "asc"){
-          return a - b;
-      } else if (order === "desc"){
-        return b - a;
-      }
-    })
-    // if (order === "asc"){
-    //   return lodash.orderBy(this.cosas(this.cosas["price", "asc"]))
-    // }
+    return lodash.orderBy(this.cosas, ["price"],[order])
   };
 }
 
