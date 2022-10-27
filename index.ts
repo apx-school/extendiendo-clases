@@ -1,4 +1,4 @@
-import * as products from "./products.json";
+import * as fs from "fs";
 import * as remove from "lodash/remove";
 import * as orderBy from "lodash/orderBy";
 
@@ -6,7 +6,6 @@ class ListaDeCosas {
   name: string;
   cosas: any[] = [];
   constructor(name: string) {
-    // nombre de esta lista
     this.name = name;
   }
   add(nuevaCosa) {
@@ -32,6 +31,11 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name: string) {
     super(name);
+
+    const productsBuffer = fs
+      .readFileSync(__dirname + "/products.json")
+      .toString();
+    const products = JSON.parse(productsBuffer);
 
     products.forEach((x) => {
       this.addProduct(x);
