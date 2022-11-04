@@ -42,7 +42,7 @@ class ListaDeProductos extends ListaDeCosas {
     if (this.cosas.length > 0){
       this.cosas.forEach((e)=>{if ((e.id===producto.id)) throw `Ya se encuentra en la lista de productos un producto con id: ${producto.id}`});
     };
-    this.cosas.push(producto);
+    this.add(producto);
   }  
 
   getProduct(id:number){
