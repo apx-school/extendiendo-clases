@@ -34,7 +34,7 @@ class ListaDeProductos extends ListaDeCosas {
   }
 
    pullProducts() {
-      const productos = JSON.parse(readFileSync('products.json',{encoding: 'utf-8'}));
+      const productos = JSON.parse(readFileSync(__dirname+'/products.json',{encoding: 'utf-8'}));
       productos.forEach(e=>this.addProduct(e));
   }
 
