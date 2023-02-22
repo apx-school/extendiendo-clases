@@ -48,4 +48,4 @@ test("Testeo el getSortedByPrice", (t) => {
     orderBy(lista.cosas, "price", "desc"),
     lista.getSortedByPrice("desc")
   );
-});
+}); 
