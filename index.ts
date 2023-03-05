@@ -1,7 +1,7 @@
 import * as products from "./products.json";
 import * as _orderBy from "lodash/orderBy";
 import * as _size from "lodash/size";
-import * as _forEach from "lodash/foreach";
+import * as _forEach from "lodash/forEach";
 import * as _finder from "lodash/find";
 import * as _remover from "lodash/remove";
 
