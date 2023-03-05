@@ -36,7 +36,7 @@ class ListaDeProductos extends ListaDeCosas {
     super(nombreLista);
     //Recorra el json y manda uno por uno a addProduct los productos
     const productos: Product[] = products;
-    productos.forEach((i) => {
+    _forEach(productos, (i) => {
       this.addProduct(i);
     });
   }
