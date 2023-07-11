@@ -33,14 +33,14 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   listProduct:Product[]
   lista:Product[]
-  // order:string
+  
   constructor(name:string){
     super(name)
      this.listProduct = JSON.parse(fs.readFileSync("./products.json","utf-8")) 
      this.listProduct.forEach(prod => this.addProduct(prod))
   }
   addProduct(producto:Product){
-    //Validar si hay otro producto con el mismo id antes de agregarlo
+    
     const productFinder = this.cosas.find(prod => prod.id === producto.id)
       if(!productFinder){
         this.add(producto)
