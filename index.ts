@@ -1,9 +1,6 @@
 import * as fs from "fs"
 import * as orderBy from "lodash/orderBy";
 
-
-
-
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
