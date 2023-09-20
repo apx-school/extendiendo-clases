@@ -30,19 +30,18 @@ class Product {
 
 class ListaDeProductos extends ListaDeCosas {
   // subclass de ListaDeCosas
-  super(name: string) {
-    this.name = name;
-    const productsInFileString = JSON.stringify(
-      fs.readFileSync("./products.json")
-    );
+  constructor(name: string) {
+    super(name);
+    const productsInFileString = fs.readFileSync("./products.json").toString();
     const productsInFileCollection = JSON.parse(productsInFileString);
     productsInFileCollection.forEach((product: Product) =>
       this.addProduct(product)
     );
   }
+
   addProduct(product: Product) {
     const isThisProductPresent: boolean = this.cosas.includes(
-      (iterationProduct) => iterationProduct.id === product.id
+      (iterationProduct: { id: number }) => iterationProduct.id === product.id
     );
     if (!isThisProductPresent) {
       this.add(product);
@@ -55,17 +54,17 @@ class ListaDeProductos extends ListaDeCosas {
   }
   removeProduct(id: number): Product {
     const foundProduct = this.cosas.find((product) => product.id === id);
-    this.cosas.splice(foundProduct.index, 1);
+    lodash.remove(this.cosas, foundProduct);
     return foundProduct;
   }
-  getSortedByPrice(order: string = "asc" || "desc") {
-    if (order === "asc") {
-      lodash.sortBy(this.cosas, [(product) => product.price]);
-    } else if (order === "desc") {
+  getSortedByPrice(order: string) {
+    if (order == "asc") {
+      return lodash.sortBy(this.cosas, [(product) => product.price]);
+    } else if (order == "desc") {
       const orderedArray = lodash.sortBy(this.cosas, [
         (product) => product.price,
       ]);
-      orderedArray.reverse();
+      return orderedArray.reverse();
     } else {
       throw new Error("Entered order is invalid, retry with 'asc' or 'desc'");
     }
