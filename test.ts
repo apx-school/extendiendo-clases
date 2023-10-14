@@ -1,7 +1,7 @@
 import test from "ava";
 import { ListaDeProductos } from "./index";
-import * as products from "./products.json";
-import * as orderBy from "lodash/orderBy";
+import products from "./products.json";
+import { orderBy } from "lodash";
 
 test("Test de prueba", (t) => {
   t.is("hola", "hola");
