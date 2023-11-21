@@ -1,9 +1,5 @@
-import { dir } from "console";
-import { readFile } from "fs/promises";
-import { dirname } from "path";
-
 import * as fs from "fs";
-import * as orderBy from "lodash/orderBy";
+import orderBy from "lodash/orderBy";
 
 class ListaDeCosas {
   name: string;
