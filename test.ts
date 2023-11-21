@@ -1,6 +1,5 @@
 import test from "ava";
 import { ListaDeProductos } from "./index";
-import products from "./products.json";
 import { orderBy } from "lodash";
 
 test("Test de prueba", (t) => {
@@ -18,11 +17,47 @@ test("Testeo el constructor", (t) => {
   t.is(lista.name, "marce");
 });
 
-test("Testeo que el constructor cargue el products.json", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const cosas = lista.getCosas();
+test('Testeo que el constructor carga los productos desde products.json', t => {
+  // Arrange
+  const listaDeProductos = new ListaDeProductos('MiLista');
 
-  t.deepEqual(cosas, products);
+  // Act (the constructor should load the products)
+  const productosCargados = listaDeProductos.getCosas();
+
+  // Assert
+  t.not(productosCargados, undefined, 'La lista de productos no debería ser undefined');
+  t.true(productosCargados.length > 0, 'La lista de productos debería contener al menos un producto');
+
+  // Optionally, you can check the specific products loaded
+  const expectedProducts = [
+    {
+      id: 1,
+      name: 'Producto 1',
+      price: 100,
+    },
+    {
+      id: 2,
+      name: 'Producto 2',
+      price: 200,
+    },
+    {
+      id: 3,
+      name: 'Producto 3',
+      price: 300,
+    },
+    {
+      id: 4,
+      name: 'Producto 4',
+      price: 400,
+    },
+    {
+      id: 5,
+      name: 'Producto 5',
+      price: 500,
+    },
+  ];
+
+  t.deepEqual(productosCargados, expectedProducts, 'La lista de productos cargados no coincide con la esperada');
 });
 
 test("Testeo el addProduct", (t) => {
