@@ -21,7 +21,6 @@ test("Testeo el constructor", (t) => {
 test("Testeo que el constructor cargue el products.json", (t) => {
   const lista = new ListaDeProductos("marce");
   const cosas = lista.getCosas();
-
   t.deepEqual(cosas, products);
 });
 
