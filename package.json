@@ -4,22 +4,23 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "test:watch": "ava --watch"
   },
   "ava": {
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--loader=tsx"
-    ]
+    "typescript": {
+      "rewritePaths": {
+        "src/": "dist/"
+      },
+      "compile": "tsc"
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^4.9.5",
-    "ava": "^5.3.1",
-    "tsx": "^3.13.0"
+    "@ava/typescript": "^4.1.0",
+    "ava": "^6.0.1",
+    "typescript": "^5.3.3"
   }
 }

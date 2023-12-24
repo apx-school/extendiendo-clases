@@ -1,3 +1,11 @@
+# Código
+
+Los archivos están en la carpeta ./src
+
+# Para inicializar este proyecto
+
+Correr: `npm install` o `yarn install` en el caso de que utilices yarn.
+
 # Desafío
 
 - Forkear este repo
@@ -16,3 +24,11 @@
 Comentá todos los tests del archivo test.ts y andá descomentando los que vayas trabajando.
 
 ![image](https://user-images.githubusercontent.com/1208547/143915400-91377ad1-aa0b-4d66-a80d-872af75ab4da.png)
+
+# Para correr los tests ejecutar
+
+`npm run test`
+
+# Para correr los tests en modo watch (reinicia automáticamente)
+
+`npm run test:watch`

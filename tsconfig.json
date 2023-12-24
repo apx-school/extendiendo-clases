@@ -3,6 +3,10 @@
     "target": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
-  }
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["./src/**/*.ts"]
 }
