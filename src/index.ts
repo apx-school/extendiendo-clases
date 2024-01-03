@@ -32,11 +32,12 @@ class Product {
 
 class ListaDeProductos extends ListaDeCosas {
   constructor(listaName: string) {
-    const productsFile = fs.readFileSync(__dirname + "/products.json");
+    const productsInFile = fs.readFileSync(__dirname + "/products.json");
+    const parseProducts = JSON.parse(productsInFile.toString());
     
     super(listaName);
     
-    this.cosas = JSON.parse(productsFile.toString());
+    parseProducts.forEach((product) => this.add(product));
   }
 
   getProduct(idProduct: number): Product | undefined {
