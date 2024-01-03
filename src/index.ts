@@ -1,5 +1,5 @@
 import fs from "fs";
-import { orderBy } from "lodash";
+import { orderBy, remove } from "lodash";
 
 class ListaDeCosas {
   name: string;
@@ -49,17 +49,8 @@ class ListaDeProductos extends ListaDeCosas {
     if(!resultSearch) this.add(product)
   }
 
-  removeProduct(idProduct: number): Product | undefined {
-    const indexProductDelete = this.cosas.findIndex((product) => product.id === idProduct);
-    const productDelete = this.cosas[indexProductDelete];
-
-    if(indexProductDelete !== -1) {
-      this.cosas.splice(indexProductDelete, 1);
-
-      return productDelete;
-    }
-
-    return undefined;
+  removeProduct(idProduct: number): void{
+    remove(this.getCosas(), (product: Product) => product.id === idProduct);
   }  
 
   getSortedByPrice(order: "asc" | "desc"): Product[] {
