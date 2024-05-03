@@ -1,5 +1,5 @@
 import test from "ava";
-import { ListaDeProductos } from "./index";
+import { ListaDeProductos, Product } from "./index";
 import products from "./products.json";
 import { orderBy } from "lodash";
 
@@ -7,11 +7,7 @@ test("Test de prueba", (t) => {
   t.is("hola", "hola");
 });
 
-// todos los tests que siguen van a fallar
-// apenas te bajes este repo.
-// comentalos y empezá a descomentar de a uno
-// a medida que vayas avanzando en el objetivo
-// de cada test
+
 
 test("Testeo el constructor", (t) => {
   const lista = new ListaDeProductos("marce");
@@ -21,9 +17,10 @@ test("Testeo el constructor", (t) => {
 test("Testeo que el constructor cargue el products.json", (t) => {
   const lista = new ListaDeProductos("marce");
   const cosas = lista.getCosas();
-
-  t.deepEqual(cosas, products);
+  const productos = products.map((product: any) => new Product(product.name, product.price, product.id));
+  t.deepEqual(cosas, productos);
 });
+
 
 test("Testeo el addProduct", (t) => {
   const lista = new ListaDeProductos("marce");
