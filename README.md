@@ -32,3 +32,4 @@ Comentá todos los tests del archivo test.ts y andá descomentando los que vayas
 # Para correr los tests en modo watch (reinicia automáticamente)
 
 `npm run test:watch`
+# extendiendo_clases_BARBI
