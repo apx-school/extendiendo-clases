@@ -1,5 +1,5 @@
 import test from "ava";
-import { ListaDeProductos } from "./index";
+import { ListaDeProductos, Product } from "./index";
 import products from "./products.json";
 import { orderBy } from "lodash";
 
@@ -27,7 +27,7 @@ test("Testeo que el constructor cargue el products.json", (t) => {
 
 test("Testeo el addProduct", (t) => {
   const lista = new ListaDeProductos("marce");
-  const myP = { price: 33, id: 123, name: "mi producto" };
+  const myP = new Product("mi producto", 33, 123);
   lista.addProduct(myP);
   const myP2 = lista.getProduct(myP.id);
   t.deepEqual(myP2, myP);
@@ -35,7 +35,7 @@ test("Testeo el addProduct", (t) => {
 
 test("Testeo el removeProduct", (t) => {
   const lista = new ListaDeProductos("marce");
-  const myP = { price: 33, id: 123, name: "mi producto" };
+  const myP = new Product("mi producto", 33, 123);
   lista.addProduct(myP);
   lista.removeProduct(myP.id);
   const p = lista.getProduct(myP.id);
@@ -45,7 +45,7 @@ test("Testeo el removeProduct", (t) => {
 test("Testeo el getSortedByPrice", (t) => {
   const lista = new ListaDeProductos("marce");
   t.deepEqual(
-    orderBy(lista.cosas, "price", "desc"),
+    orderBy(lista.getCosas(), "price", "desc"),
     lista.getSortedByPrice("desc")
   );
 });
