@@ -18,12 +18,26 @@ test("Testeo el constructor", (t) => {
   t.is(lista.name, "marce");
 });
 
-test("Testeo que el constructor cargue el products.json", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const cosas = lista.getCosas();
+test('Testeo que el constructor cargue el products.json', t => {
+  const lista = new ListaDeProductos("mi lista");
 
-  t.deepEqual(cosas, products);
+  const expectedProducts = [
+    { name: "Producto 1", price: 100, id: 1 },
+    { name: "Producto 2", price: 200, id: 2 },
+    { name: "Producto 3", price: 300, id: 3 },
+    { name: "Producto 4", price: 400, id: 4 },
+    { name: "Producto 5", price: 500, id: 5 },
+  ];
+
+  const actualProducts = lista.getCosas().map(product => ({
+    name: product.name,
+    price: product.price,
+    id: product.id
+  }));
+
+  t.deepEqual(actualProducts, expectedProducts);
 });
+
 
 test("Testeo el addProduct", (t) => {
   const lista = new ListaDeProductos("marce");
