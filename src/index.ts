@@ -1,8 +1,9 @@
+import fs from "fs";
+
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
   constructor(name: string) {
-    // nombre de esta lista
     this.name = name;
   }
   add(nuevaCosa) {
@@ -24,6 +25,43 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  productosArchivo: Product[];
+  constructor(n: string) {
+    super(n);
+    const productsJson = fs.readFileSync(__dirname + "/products.json").toString();
+    this.productosArchivo = JSON.parse(productsJson);
+    this.cosas=this.productosArchivo
+
+  }
+
+  addProduct(product: Product): void {
+    this.add(product);
+    this.productosArchivo.push(product);
+  }
+
+  getProduct(id: number): Product {
+    return this.productosArchivo.find(p=>p.id===id)
+
+  };
+
+  removeProduct(id: number) {
+    const listaRenovada = this.productosArchivo.filter(product => product.id !== id);
+    this.productosArchivo = listaRenovada;
+    this.cosas = this.cosas.filter(p => p.id !== id); 
+  fs.writeFileSync(__dirname + "/products.json", JSON.stringify(listaRenovada, null, 2));
+  }
+
+  getSortedByPrice(order: string): Product[] {
+    return this.productosArchivo.sort((a: Product, b: Product) => {
+      if (order === 'asc') {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+  };
+};
+
 
 export { ListaDeProductos, Product };
