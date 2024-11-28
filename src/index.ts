@@ -1,3 +1,5 @@
+import * as fs from "fs";
+import _ from "lodash";
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
@@ -24,6 +26,32 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  productJson: any[];
+  constructor(name: string) {
+    super(name);
+    const prodOfJson = fs.readFileSync(__dirname + "/products.json").toString();
+    this.productJson = JSON.parse(prodOfJson);
+  }
+  getCosas(): any[] {
+    return this.productJson;
+  }
+  addProduct(product: Product) {
+    const exist = this.productJson.some((p) => p.id === product.id);
+    exist ? "Este producto ya exite" : this.productJson.push(product);
+    return this.getCosas();
+  }
+  getProduct(id: number): Product {
+    return this.productJson.find((p) => p.id === id);
+  }
+  removeProduct(id: number): Product[] {
+    this.productJson = this.productJson.filter((p) => p.id !== id);
+    return this.getCosas();
+  }
+  getSortedByPrice(order: string): void {
+    const orders = _.orderBy(this.cosas, order, "desc");
+    return orders;
+  }
+}
 
 export { ListaDeProductos, Product };
