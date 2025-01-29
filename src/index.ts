@@ -1,5 +1,5 @@
 import products from "./products.json";
-import { orderBy } from "lodash";
+import { orderBy, remove } from "lodash";
 
 class ListaDeCosas {
   name: string;
@@ -30,25 +30,9 @@ class Product {
 class ListaDeProductos extends ListaDeCosas {
   constructor(name: string) {
     super(name);
-
-    //* Solución corta:
-    /* products.forEach((p) => {
+    products.forEach((p) => {
       this.addProduct(p);
-    }); */
-
-    //* Mi solución:
-    for (let i = 0; i < products.length; i++) {
-      const id = products[i].id;
-      const nombre = products[i].name;
-      const precio = products[i].price;
-      const nuevoProducto = new Product(nombre, precio, id);
-      const nuevoProductoFormateado = {
-        id: nuevoProducto.id,
-        name: nuevoProducto.name,
-        price: nuevoProducto.price,
-      };
-      this.addProduct(nuevoProductoFormateado);
-    }
+    });
   }
   addProduct(product: Product): void {
     this.add(product);
@@ -59,18 +43,11 @@ class ListaDeProductos extends ListaDeCosas {
   }
 
   removeProduct(id: number) {
-    const i = this.cosas.findIndex((p) => p.id === id);
-    if (i !== -1) {
-      this.cosas.splice(i, 1);
-    }
+    remove(this.cosas, (c) => c.id == id);
   }
 
   getSortedByPrice(order: "asc" | "desc"): void {
-    if (order == "asc") {
-      return orderBy(this.cosas, "price", "asc");
-    } else if (order == "desc") {
-      return orderBy(this.cosas, "price", "desc");
-    }
+    return orderBy(this.cosas, ["price"], [order]);
   }
 }
 
