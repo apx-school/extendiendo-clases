@@ -1,3 +1,4 @@
+import productJson from './products.json';
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
@@ -5,9 +6,7 @@ class ListaDeCosas {
     // nombre de esta lista
     this.name = name;
   }
-  add(nuevaCosa) {
-    this.cosas.push(nuevaCosa);
-  }
+  
   getCosas() {
     return this.cosas;
   }
@@ -24,6 +23,57 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+    
+  constructor(name:string){
+    super(name);
+    
+     if(productJson.length === 0){
+      throw new Error(`No hay productos`);
+    }
+
+    this.cosas = productJson;
+
+    this.addProduct(new Product("Coca",850,9));
+  }
+
+  addProduct(nuevaCosa):void {
+     
+    if (!this.cosas.find((cosa) => cosa.id === nuevaCosa.id)) {
+      this.cosas.push(nuevaCosa);
+    }
+  }
+
+  getProduct(id:number):Product{
+    return this.cosas.find((cosa:Product) => cosa.id === id);
+  }
+
+  removeProduct(id:number):Product{
+    const index = this.cosas.findIndex((cosa) => {
+      return cosa.id === id;
+    })
+    
+    if(index !== -1) {
+       return this.cosas.splice(index,1)[0]
+    }
+   return  undefined;
+    
+
+    
+  }
+
+  getSortedByPrice(orderBy:string):Product[]{
+    let ordenamiento:Product[] = [...this.cosas];
+    if(orderBy.toLowerCase() === "desc"){
+      ordenamiento.sort((a,b)=> b.price - a.price);
+    }
+    else if(orderBy.toLowerCase() === "asc"){
+      ordenamiento.sort((a,b) => a.price - b.price);
+    }
+   
+     return ordenamiento
+  }
+ 
+}
 
 export { ListaDeProductos, Product };
