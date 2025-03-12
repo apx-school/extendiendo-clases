@@ -23,5 +23,15 @@
     "id": 5,
     "name": "Producto 5",
     "price": 500
+  },
+  {
+    "id": 22,
+    "name": "mochila",
+    "price": 600
+  },
+  {
+    "id": 23,
+    "name": "cartuchera",
+    "price": 900
   }
 ]
