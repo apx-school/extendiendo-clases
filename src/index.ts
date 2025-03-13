@@ -1,3 +1,5 @@
+import * as fs from "fs";
+
 class ListaDeCosas {
   name: string;
   cosas: any[] = [];
@@ -24,6 +26,41 @@ class Product {
   }
 }
 
-class ListaDeProductos extends ListaDeCosas {}
+class ListaDeProductos extends ListaDeCosas {
+  constructor(name: string) {
+    super(name);
+
+    const contenidoDelArchivo = fs.readFileSync(__dirname +"/products.json").toString();
+    const productosDelArchivo = JSON.parse(contenidoDelArchivo);
+
+    productosDelArchivo.forEach(p => {
+      this.addProduct(p)
+    });
+  }
+
+    addProduct(product: Product) {
+      this.add(product)  
+    }
+
+    getProduct(id: number) {
+      const cosas = this.getCosas();
+      return cosas.find((cosa) => cosa.id == id);
+    }
+
+    removeProduct(id: number) {
+      this.cosas = this.cosas.filter(product => product.id !== id);
+  }  
+
+  getSortedByPrice(order: "asc" | "desc") {
+    return this.cosas.sort((a, b) => {
+        if (order === "asc") {
+            return a.price - b.price;
+        } else {
+            return b.price - a.price;
+        }
+    });
+}
+
+}
 
 export { ListaDeProductos, Product };
