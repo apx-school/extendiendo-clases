@@ -1,51 +1,38 @@
-import test from "ava";
+import Test from "ava";
 import { ListaDeProductos } from "./index";
-import products from "./products.json";
-import { orderBy } from "lodash";
-
-test("Test de prueba", (t) => {
-  t.is("hola", "hola");
+import Productos from "./products.json";
+import OrdenarPor from "lodash/orderBy";
+Test("Test de prueba",(t)=>{
+  t.is("hola","hola");
 });
-
-// todos los tests que siguen van a fallar
-// apenas te bajes este repo.
-// comentalos y empezá a descomentar de a uno
-// a medida que vayas avanzando en el objetivo
-// de cada test
-
-test("Testeo el constructor", (t) => {
-  const lista = new ListaDeProductos("marce");
-  t.is(lista.name, "marce");
+Test("Testeo el constructor",(t)=>{
+  const Lista = new ListaDeProductos("Pablo");
+  t.is(Lista.Nombre,"Pablo");
 });
-
-test("Testeo que el constructor cargue el products.json", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const cosas = lista.getCosas();
-
-  t.deepEqual(cosas, products);
+Test("Testeo que el constructor cargue el products.json",(t)=>{
+  const Lista = new ListaDeProductos("Pablo");
+  const Cosas = Lista.ObtenerCosas();
+  t.deepEqual(Cosas,Productos);
 });
-
-test("Testeo el addProduct", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const myP = { price: 33, id: 123, name: "mi producto" };
-  lista.addProduct(myP);
-  const myP2 = lista.getProduct(myP.id);
-  t.deepEqual(myP2, myP);
+Test("Testeo el AgregarProducto",(t)=>{
+  const Lista = new ListaDeProductos("Pablo");
+  const myP={PrecioP:33,IDP:123,NombreP:"mi producto"};
+  Lista.AgregarProducto(myP);
+  const myP2=Lista.ObtenerProducto(myP.IDP);
+  t.deepEqual(myP2,myP);
 });
-
-test("Testeo el removeProduct", (t) => {
-  const lista = new ListaDeProductos("marce");
-  const myP = { price: 33, id: 123, name: "mi producto" };
-  lista.addProduct(myP);
-  lista.removeProduct(myP.id);
-  const p = lista.getProduct(myP.id);
-  t.falsy(p);
+Test("Testeo el removeProduct",(t)=>{
+  const lista = new ListaDeProductos("Pablo");
+  const myP={PrecioP:33,IDP:123,NombreP:"mi producto"};
+  lista.AgregarProducto(myP);
+  lista.RemoverProducto(myP.IDP);
+  const P=lista.ObtenerProducto(myP.IDP);
+  t.falsy(P);
 });
-
-test("Testeo el getSortedByPrice", (t) => {
-  const lista = new ListaDeProductos("marce");
+Test("Testeo el ObtenerTiendaPorPrecios",(t)=>{
+  const lista = new ListaDeProductos("Pablo");
   t.deepEqual(
-    orderBy(lista.cosas, "price", "desc"),
-    lista.getSortedByPrice("desc")
+    OrdenarPor(lista.Cosas,"Precio","desc"),
+    lista.ObtenerTiendaPorPrecios("desc")
   );
 });
