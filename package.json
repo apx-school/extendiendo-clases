@@ -20,6 +20,8 @@
   "license": "ISC",
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
+    "@types/lodash": "^4.17.17",
+    "@types/node": "^22.15.30",
     "ava": "^6.0.1",
     "typescript": "^5.3.3"
   }
