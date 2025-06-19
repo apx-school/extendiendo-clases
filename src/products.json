@@ -23,5 +23,10 @@
     "id": 5,
     "name": "Producto 5",
     "price": 500
+  },
+  {
+    "price": 33,
+    "id": 123,
+    "name": "mi producto"
   }
 ]
