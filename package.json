@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.17.17",
+    "@types/node": "^24.0.3",
     "lodash": "^4.17.21"
   }
 }
